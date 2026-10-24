@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luktor Labs</title>
+<meta name="description" content="Luktor Labs is a small family workshop in Ontario. We make tools you pay for once, run on your own machines, and keep.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "Alegreya"; src: url(fonts/alegreya-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Alegreya"; src: url(fonts/alegreya-latin-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Alegreya"; src: url(fonts/alegreya-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Alegreya"; src: url(fonts/alegreya-latin-800-normal.woff2) format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Alegreya Sans"; src: url(fonts/alegreya-sans-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Alegreya Sans"; src: url(fonts/alegreya-sans-latin-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Alegreya Sans"; src: url(fonts/alegreya-sans-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+
+:root {
+  --wall: #F2F3EF;
+  --graphite: #2A2C2E;
+  --pencil: #62666A;
+  --chalk: #2357B5;
+  --rule: #CDD0CB;
+  --line: #2A2C2E;
+  --oak-face: #D9BE8C;
+  --oak-edge: #E8D7B0;
+  --oak-end: #B88D58;
+  --serif: "Alegreya", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Alegreya Sans", "Gill Sans", "Segoe UI", system-ui, sans-serif;
+  --measure: 34rem;
+  --margin: 11rem;
+  --gutter: 2.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --wall: #1C1E20;
+    --graphite: #E2E4E0;
+    --pencil: #A4A8AB;
+    --chalk: #8FB1F2;
+    --rule: #3A3D40;
+    --oak-face: #BFA273;
+    --oak-edge: #CDB78E;
+    --oak-end: #9C7646;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--wall);
+  color: var(--graphite);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.55;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+}
+a { color: var(--chalk); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--chalk); outline-offset: 3px; border-radius: 2px; }
+
+.page { max-width: calc(var(--margin) + var(--gutter) + var(--measure) + 14rem); margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.75rem 0 0; }
+.mark { font-weight: 700; font-size: 1.25rem; letter-spacing: 0.01em; color: var(--graphite); text-decoration: none; }
+.top a.write { font-family: var(--sans); font-size: 1.0625rem; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: var(--gutter); align-items: center; padding: 4.5rem 0 4rem; }
+h1 {
+  font-weight: 800;
+  font-size: clamp(3.1rem, 7.2vw, 5.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.012em;
+  margin: 0 0 1.75rem;
+  max-width: 9ch;
+}
+.lede { max-width: 26rem; margin: 0; font-size: 1.375rem; line-height: 1.5; }
+figure { margin: 0; }
+.dovetail { display: block; width: 100%; height: auto; max-width: 34rem; margin-left: auto; }
+figcaption { font-family: var(--sans); font-style: italic; color: var(--pencil); font-size: 1rem; line-height: 1.4; margin-top: 0.75rem; text-align: right; }
+
+.w { stroke: var(--line); stroke-width: 1.1; stroke-linejoin: round; }
+.w.face { fill: var(--oak-face); }
+.w.edge { fill: var(--oak-edge); }
+.w.end { fill: var(--oak-end); }
+.hatch { fill: url(#rings); stroke: none; }
+.ring { stroke: var(--line); stroke-width: 0.6; opacity: 0.35; }
+.way { stroke: var(--chalk); stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
+.tip { fill: var(--chalk); }
+.note { stroke: var(--pencil); stroke-width: 0.9; fill: none; }
+.label { fill: var(--pencil); font-family: var(--sans); font-style: italic; font-size: 15px; }
+
+section { border-top: 1px solid var(--rule); padding: 3.25rem 0 1rem; }
+.row { display: grid; grid-template-columns: var(--margin) minmax(0, var(--measure)); column-gap: var(--gutter); }
+h2 { grid-column: 2; font-weight: 700; font-size: 2.125rem; line-height: 1.15; margin: 0 0 1.75rem; letter-spacing: -0.005em; }
+.entry { margin: 0 0 2.25rem; }
+.entry h3 { grid-column: 2; font-weight: 700; font-size: 1.5rem; line-height: 1.25; margin: 0 0 0.35rem; }
+.entry p { grid-column: 2; margin: 0 0 0.6rem; max-width: var(--measure); }
+.entry .stage {
+  grid-column: 1; grid-row: 1 / span 2;
+  font-family: var(--sans); font-style: italic; color: var(--pencil);
+  font-size: 1.0625rem; line-height: 1.35; text-align: right;
+  padding-top: 0.3rem; margin: 0;
+}
+.entry .more { font-family: var(--sans); font-size: 1.0625rem; }
+.ways p { grid-column: 2; margin: 0 0 1.25rem; }
+.ways strong, .work strong { font-weight: 700; }
+.work p { grid-column: 2; margin: 0 0 1.25rem; }
+.write-to { grid-column: 2; font-size: 1.5rem; margin: 0.75rem 0 0; }
+
+footer { border-top: 1px solid var(--rule); margin-top: 2.5rem; padding-top: 1.5rem; font-family: var(--sans); color: var(--pencil); font-size: 1rem; }
+footer .row p { grid-column: 2; margin: 0 0 0.4rem; }
+
+@media (max-width: 60rem) {
+  .hero { grid-template-columns: 1fr; padding: 3rem 0 3rem; }
+  .dovetail { margin: 0; max-width: 30rem; }
+  figcaption { text-align: left; }
+}
+@media (max-width: 44rem) {
+  body { font-size: 1.1875rem; }
+  .page { padding: 0 1rem 3rem; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  h2, .entry h3, .entry p, .ways p, .work p, .write-to, footer .row p { grid-column: 1; }
+  .entry .stage { grid-column: 1; grid-row: auto; text-align: left; padding: 0; margin: 0 0 0.5rem; order: 2; }
+  .entry { display: flex; flex-direction: column; }
+  .entry h3 { order: 1; }
+  .entry p { order: 3; }
+  h2 { font-size: 1.875rem; }
+  .lede { font-size: 1.25rem; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <a class="mark" href="/">Luktor Labs</a>
+  <a class="write" href="mailto:hello@luktor.ca">hello@luktor.ca</a>
+</header>
+
+<main>
+<div class="hero">
+  <div>
+    <h1>Software made to be owned.</h1>
+    <p class="lede">Luktor Labs is a small family workshop in Ontario. We make tools you pay for once, run on your own machines, and keep.</p>
+  </div>
+  <figure>
+    <!-- dovetail:start -->
+    <svg class="dovetail" viewBox="-12 -160 492 444" role="img" aria-labelledby="dovetail-title"><title id="dovetail-title">A through dovetail joint, its two boards drawn apart along the one direction in which they fit together.</title><defs><pattern id="rings" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" class="ring"/></pattern><marker id="tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="tip"/></marker></defs><polygon class="w end" points="314.2,-74.2 374.2,-74.2 374.2,165.8 314.2,165.8"/><polygon class="hatch" points="314.2,-74.2 374.2,-74.2 374.2,165.8 314.2,165.8"/><polygon class="w edge" points="314.2,-74.2 374.2,-74.2 448.5,-148.5 388.5,-148.5"/><polygon class="w face" points="374.2,-74.2 374.2,165.8 448.5,91.5 448.5,-148.5"/><polygon class="w end" points="293.0,162.0 353.0,172.0 353.0,187.0 293.0,187.0"/><polygon class="hatch" points="293.0,162.0 353.0,172.0 353.0,187.0 293.0,187.0"/><polygon class="w edge" points="293.0,162.0 353.0,172.0 374.2,150.8 314.2,140.8"/><polygon class="w face" points="353.0,172.0 353.0,187.0 374.2,165.8 374.2,150.8"/><polygon class="w end" points="293.0,87.0 353.0,97.0 353.0,112.0 293.0,122.0"/><polygon class="hatch" points="293.0,87.0 353.0,97.0 353.0,112.0 293.0,122.0"/><polygon class="w edge" points="293.0,87.0 353.0,97.0 374.2,75.8 314.2,65.8"/><polygon class="w face" points="353.0,97.0 353.0,112.0 374.2,90.8 374.2,75.8"/><polygon class="w end" points="293.0,12.0 353.0,22.0 353.0,37.0 293.0,47.0"/><polygon class="hatch" points="293.0,12.0 353.0,22.0 353.0,37.0 293.0,47.0"/><polygon class="w edge" points="293.0,12.0 353.0,22.0 374.2,0.8 314.2,-9.2"/><polygon class="w face" points="353.0,22.0 353.0,37.0 374.2,15.8 374.2,0.8"/><polygon class="w end" points="293.0,-53.0 353.0,-53.0 353.0,-38.0 293.0,-28.0"/><polygon class="hatch" points="293.0,-53.0 353.0,-53.0 353.0,-38.0 293.0,-28.0"/><polygon class="w edge" points="293.0,-53.0 353.0,-53.0 374.2,-74.2 314.2,-74.2"/><polygon class="w face" points="353.0,-53.0 353.0,-38.0 374.2,-59.2 374.2,-74.2"/><polygon class="w face" points="0.0,0.0 240.0,0.0 240.0,240.0 0.0,240.0"/><polygon class="w edge" points="0.0,0.0 240.0,0.0 261.2,-21.2 21.2,-21.2"/><polygon class="w end" points="240.0,0.0 240.0,240.0 261.2,218.8 261.2,-21.2"/><polygon class="hatch" points="240.0,0.0 240.0,240.0 261.2,218.8 261.2,-21.2"/><polygon class="w face" points="240.0,175.0 300.0,165.0 300.0,225.0 240.0,215.0"/><polygon class="w edge" points="240.0,175.0 300.0,165.0 321.2,143.8 261.2,153.8"/><polygon class="w end" points="300.0,165.0 300.0,225.0 321.2,203.8 321.2,143.8"/><polygon class="hatch" points="300.0,165.0 300.0,225.0 321.2,203.8 321.2,143.8"/><polygon class="w face" points="240.0,100.0 300.0,90.0 300.0,150.0 240.0,140.0"/><polygon class="w edge" points="240.0,100.0 300.0,90.0 321.2,68.8 261.2,78.8"/><polygon class="w end" points="300.0,90.0 300.0,150.0 321.2,128.8 321.2,68.8"/><polygon class="hatch" points="300.0,90.0 300.0,150.0 321.2,128.8 321.2,68.8"/><polygon class="w face" points="240.0,25.0 300.0,15.0 300.0,75.0 240.0,65.0"/><polygon class="w edge" points="240.0,25.0 300.0,15.0 321.2,-6.2 261.2,3.8"/><polygon class="w end" points="300.0,15.0 300.0,75.0 321.2,53.8 321.2,-6.2"/><polygon class="hatch" points="300.0,15.0 300.0,75.0 321.2,53.8 321.2,-6.2"/><line class="way" x1="403.2" y1="194.8" x2="338.1" y2="259.9" marker-end="url(#tip)"/><path class="note" d="M240,250 L300,250 M300,246 L300,254 M240,246 L240,254"/><path class="note" d="M312,215 L312,225 M308,215 L316,215 M308,225 L316,225"/><text class="label" x="270" y="268" text-anchor="middle">6</text><text class="label" x="322" y="224">1</text></svg>
+    <!-- dovetail:end -->
+    <figcaption>A through dovetail, drawn apart. It goes together one way only.</figcaption>
+  </figure>
+</div>
+
+<section aria-labelledby="make">
+  <div class="row"><h2 id="make">What we make</h2></div>
+
+  <div class="row entry">
+    <h3>LexTribunalis</h3>
+    <p class="stage">Early access. One diocesan tribunal in Ontario uses it.</p>
+    <p>Case management for diocesan marriage tribunals. It tracks causes, time limits, acts, letters and decrees, and counts the figures for the annual reports. It runs on the tribunal's own server, and the tribunal receives the source code.</p>
+    <p class="more"><a href="https://lextribunalis.com">lextribunalis.com</a></p>
+  </div>
+
+  <div class="row entry">
+    <h3>Beat Your Bot at Chess</h3>
+    <p class="stage">Being readied as a bot on Lichess. Not live yet.</p>
+    <p>A chess player in the style of Paul Morphy. It sees only a few moves ahead and remembers what it was doing. It never throws a game on a roll of the dice, so when you beat it, you beat a player. Each move it makes comes with the moves it passed over, and why.</p>
+    <p class="more"><a href="https://beatyourbotatchess.ca">beatyourbotatchess.ca</a></p>
+  </div>
+
+  <div class="row entry">
+    <h3>The Teacher</h3>
+    <p class="stage">A design. Not yet a product.</p>
+    <p>A sparring partner for chess academies. It would play for what the student can learn, not to win. Its hints would ask rather than tell, and its reviews would not give the answers away. Its aim is to send students on to human sparring partners.</p>
+  </div>
+
+  <div class="row entry">
+    <h3>Come and C</h3>
+    <p class="stage">Working. Not yet offered.</p>
+    <p>A pair programmer for people learning C. It never writes code for you. After each save it asks one question, pitched to what you already know, in the habits of a master programmer. Your work stays on your own machine.</p>
+  </div>
+
+  <div class="row entry">
+    <h3>On the bench</h3>
+    <p class="stage">Research. Not a product.</p>
+    <p>We also do research. One project turns testimony into claims a person can check against the record. It answers questions of fact and never decides.</p>
+  </div>
+</section>
+
+<section class="ways" aria-labelledby="how">
+  <div class="row"><h2 id="how">How we work</h2></div>
+  <div class="row"><p><strong>You own your tools.</strong> You buy a licence once. There is no annual fee and nothing to rent. When an update comes out, you decide whether to buy it.</p></div>
+  <div class="row"><p><strong>It runs on your machines.</strong> Your records stay in your custody, in formats you can open without us. What you buy does not need us to keep running.</p></div>
+  <div class="row"><p><strong>Every result is explained.</strong> A deadline names the canon it comes from. A figure in an annual report traces back to its causes. A chess move comes with the moves it passed over. Nothing is a black box.</p></div>
+  <div class="row"><p><strong>A carpentry shop.</strong> We call this a carpentry shop, and we mean it plainly. A carpenter is paid for the making. You order a table, he builds it, and it is yours. Sometimes a patron pays for the making and the work is given away. We work the same way. We are two people, Richard Verver and his father, with friends brought in when a job needs them. We mean to stay small and do good work.</p></div>
+</section>
+
+<section class="work" aria-labelledby="with">
+  <div class="row"><h2 id="with">Work with us</h2></div>
+  <div class="row"><p><strong>Commissions.</strong> Need a tool made? Tell us what it is for and who will use it. We will put the price and the scope in writing. You pay for the making. The tool is yours to keep.</p></div>
+  <div class="row"><p><strong>Academies.</strong> If you run a chess academy, the Teacher is meant for you. It is still a design, so now is the time to talk. Tell us how your students train. It would be licensed once and run on your own machines.</p></div>
+  <div class="row"><p><strong>Tribunals.</strong> See <a href="https://lextribunalis.com">lextribunalis.com</a>. Demonstrations are free, by video call, with no obligation. Prices are quoted in writing after a demonstration, and early users pay less.</p></div>
+  <div class="row"><p class="write-to">Write to <a href="mailto:hello@luktor.ca">hello@luktor.ca</a>.</p></div>
+</section>
+</main>
+
+<footer>
+  <div class="row">
+    <p>Luktor Labs, Ontario, 2026.</p>
+    <p>This site sets no cookies and loads nothing from anyone else.</p>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
